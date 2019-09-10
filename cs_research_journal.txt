@@ -1,0 +1,61 @@
+Owen Gallagher
+Fall 2019
+CS Seminar / CS Research
+
+Journal for CS Seminar and CS Research
+
+===
+
+WEEKLY RESEARCH
+
+10 Sept 2019
+
+https://docs.google.com/document/d/1n_xJW63crfUVrDxVDxdCP4LXqz0zMnkJWqAi_1gy7Bk/edit?usp=sharing –– this is not a research paper, but rather an index of modern computer science research fields, hosted by ETH Zurich. At the highest level, it lists as topics: data management and machine learning, security, networks and parallel computing, pervasive computing, languages and software engineering, theory and algorithms, and visual computing. I think this list helps organize research ideas and suggest directions for asking new questions.
+
+http://people.csail.mit.edu/akiezun/hampi/ –– describes HAMPI, which is a solver for string constraints. Essentially, given some rule like a regular expression or context-free grammar, HAMPI returns an example string that satisfies the input constraint, or says it's impossible. It's an example of taking some solution to a problem, and then finding the solution to the inverse problem.
+
+https://flif.info/index.html –– specifications for a lossless image format with built-in compression that claims to beat all other formats in terms of speed and size.
+
+===
+
+TOPIC IDEAS
+
+find security features/flaws in some technology
+	- collection of specific websites, creating a comprehensive report of common security flaws existent in those sites
+	
+engine for creating custom programming language
+	- implementation ideas
+		- would be compiled to some other language
+		- start with a text-based interface between the user and the engine
+		- needs a base set of commands that controls everything else
+		- probably requires that the user know another existing programming language to serve as the compile destination. For example, if a user wants to define "add <val> to <val/id>", they need to be able to describe that function in terms of another language. The translation is "add_to(a,b) {b += a;}".
+		- to make the engine more general, it needs a config file for the user's language. For example, with English, "my" indicates possession (as mentioned below), so that would be expressed in the config file's own language.
+		- the grammar of the user language needs to be mapped to the grammar of the target language
+			- function
+			- definition
+			- control
+			- reference
+		- supports synonyms. "add <a> to <b>" equals "increment <b> by <a>" equals "make <a> equal <a> + <b>"
+	- application
+		- some IOT devices, like voice-controlled personal assistant devices, which already have some capabilities for adapting to users' natural language and parsing for a standard command, could benefit from applying that parsing to generating new commands and data for the user.
+			- example:
+			  "my apple is a fruit"		-->		"user.apple = new Apple();" ">>you can describe your apple if you'd like"	||	it needs to know "my" indicates possession, and "<instance> is a <class>" indicates that <instance> is of type <class>
+			  "my apple is red"			-->		">>what is red?"
+			  "red is a color"			-->		"red = new Color();" ">>what are red's r,g,b values?"
+			  "255,0,0"					-->		"red.r = 255;"
+			  "what is red?"			-->		"red is a color. it's values are r=255, g=0, b=0."
+	- technical details
+		- config files
+			- language for the engine prompts (you, your, what are <id>'s)
+			- language for parsing basic user input (my, <id>s, <id>'s)
+		- program
+			- parses user input and generates custom language, ¿overwriting itself?
+			- executes custom language simultaneously and has memory
+
+pick a modern encryption algorithm and attempt to break it... for the entire semester Dx
+
+simulate some complex system
+	- the creation of fatty acids in chemical evolution
+	- swarming/hive behaviour
+	
+stock predictor program: use past patterns in prices of a stock to extrapolate a future value
