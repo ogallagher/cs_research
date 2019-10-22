@@ -10,11 +10,105 @@ WEEKLY RESEARCH
 
 10 Sept 2019
 
-https://docs.google.com/document/d/1n_xJW63crfUVrDxVDxdCP4LXqz0zMnkJWqAi_1gy7Bk/edit?usp=sharing –– this is not a research paper, but rather an index of modern computer science research fields, hosted by ETH Zurich. At the highest level, it lists as topics: data management and machine learning, security, networks and parallel computing, pervasive computing, languages and software engineering, theory and algorithms, and visual computing. I think this list helps organize research ideas and suggest directions for asking new questions.
+https://inf.ethz.ch/research.html –– this is not a research paper, but rather an index of modern computer science research fields, hosted by ETH Zurich. At the highest level, it lists as topics: data management and machine learning, security, networks and parallel computing, pervasive computing, languages and software engineering, theory and algorithms, and visual computing. I think this list helps organize research ideas and suggest directions for asking new questions.
 
 http://people.csail.mit.edu/akiezun/hampi/ –– describes HAMPI, which is a solver for string constraints. Essentially, given some rule like a regular expression or context-free grammar, HAMPI returns an example string that satisfies the input constraint, or says it's impossible. It's an example of taking some solution to a problem, and then finding the solution to the inverse problem.
 
 https://flif.info/index.html –– specifications for a lossless image format with built-in compression that claims to beat all other formats in terms of speed and size.
+
+17 Sept 2019
+
+The engine that understands human user language has a number of associated components.
+- parse input sentences (statements, commands, questions) for grammar
+- get definitions of unknown tokens (words, phrases) from the user in an understandable format
+- have a running execution context with instances of defined classes (knowledge graph)
+If the purpose of the engine is to use user-input data to infer/derive new data, it would take a lot of customization and difficult definitions to arrive at anything remotely useful.
+
+https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf –– organization that aims to help developers create secure web systems, by promoting awareness of weaknesses and proposing best practices. They also have a Top 10 Most Critical Web Application Security Risks list:
+- Injection: tricking a server-side interpreter into executing otherwise blocked database queries 
+- Broken authentication: passwords, keys, authentication tokens follow some sort of pattern or are readily retrievable
+- Sensitive data exposure: acquiring sensitive data via lack of encryption, usually within the API
+- XML external entities (XXE): ?requires more research to understand?
+- Broken access control: restrictions of permissions for authenticated users are not properly configured or enforced
+- Security misconfiguration: self-explanatory
+- Cross-site scripting: like injection on the front-end, where attacker JS or HTML is executed in another client's browser
+- Insecure deserialization: ?requires more research to understand?
+- Using components with unknown vulnerabilities: self-explanatory
+- Insufficient logging and monitoring: time to detect a breach is too long to adequately prevent worse damage from an initially minor breach
+
+24 Sept 2019
+
+Admittedly still in the topic-search phase, this week I'm trying to put all my energy into exploring possible research topics, rather than exploring in too much detail any one topic. One avenue I've begun exploring is swarm behavior.
+
+https://arxiv.org/pdf/1909.06711.pdf –– This paper features a neurally inspired approach to creation of a swarm control system: "On the basis of these phenomena, we introduce a brain-inspired dynamical controller for self-organized swarms of autonomous agents". It also introduces plenty of concepts I was not previously familiar with, namely attractor dynamics and oscillatory computing. Unfortunately, the subject and implications of the paper are out of my depth and I'll probably not use it. However, my main takeaway was their application of neural analysis, typically used for a single entity, to a swarm of many autonomous but cooperative entities. Another interesting piece to note is that the paper proposes a specific function for determining a leader entity's action given the actions of the swarm as a whole, using a sort of averaging.
+
+https://ieeexplore.ieee.org/document/8565896 –– As an aside, my brief investigation into "oscillatory computing" led me to another paper, concerning an apparently unrelated usage of the term. This one is going to require authorization for access. The abstract puts forth some interesting ideas: "... binary abstraction and Boolean logic, which have been the foundations of modern computing revolution, fall short... We show that simple configurations of oscillators connected using simple electrical circuits can result in interesting phase and frequency dynamics of such coupled oscillatory systems. Such networks can be controlled, programmed, and observed to solve computationally hard problems". I don't really get it, but the fact that the paper attempts to move away from something as essential to computing as boolean logic is intriguing.
+
+https://www.kurzweilai.net/synchronized-oscillators-may-allow-for-computing-that-works-like-the-brain –– Based on my brief skim of the previous article, I found this one which I think explains a related concept in more accessible terms: "synchronized oscillators may allow for computing that works like the brain". This seems to find itself in a specific vein of "physics computers", which attempt to allow the forces of nature to compute answers in a non-traditional way. Here's an example: "An array of oscillators can store patterns — for instance, the color of someone’s hair, their height and skin texture. If a second area of oscillators has the same pattern, they will begin to synchronize, and the degree of match can be read out, without consuming a lot of energy and requiring a lot of transistors, as in Boolean computing." The behavior of these low-power oscillators tends to synchronize them together according to a host of natural forces, and the appropriate human interpretation of this level of synchronization is what turns the oscillator network into a computer.
+
+1 Oct 2019
+
+It's my turn to present an article this coming Tuesday, so I'm searching for something interesting that I can understand and that has potential for undergraduate research.
+
+https://www.sciencedirect.com/science/article/pii/S0921889002001665 –– Looking into robotics control via natural language commands, here's a paper that investigates an Instruction Based Learning (IBL) approach, as opposed to reinforcement or imitiation based learning. This seems to be an interesting branch of what I was trying to articulate with my previous idea of a personal assistant. Basically, take the paper's case of a robot with a specific set of potential actions which need to be mapped to natural language. The issue that makes my case different and more complex is that the robot is replaced with the computer, and the potential actions are the entire body of commands permitted by a programming language.
+
+8 Oct 2019
+
+I began this week's research by using the paper from my presentation as a source, and searched for other articles that cited it and were published on a later date, suggesting constructive future research.
+
+–– A survey of robot learning from demonstration (Argall, Chernova, Veloso, Browning) –– 
+
+In robotics, a policy is the mapping between world state and action. This paper explores policy development via demonstration learning (DL) (as opposed to instruction-based learning (IL) from the first article I found). It remains to be seen whether demonstration learning is the same as imitation learning... it's a subset of reinforcement learning, where labeled training data is used to define new policy. DL is broken into two phases: example gathering, and policy deriving.
+
+Key implementation decisions
+	- how to represent state (discreet vs continuous)
+	- demonstrator 
+	- demonstration technique
+	- action control level and continuity (discreet vs continuous)
+	- dealing with correspondence issues (difference between demonstrator and learner mechanics/sensing)
+		- record mapping: demonstration --> demonstrator states+actions/SA (no demonstrator sensor data)
+		- embodiment mapping: demonstrator SA --> learner SA (demonstrator body is anatomically different)
+		- fewer mappings mean learning is easier and more precise, but less generally applicable and less viable in robots with many degrees of freedom or high control difficulty
+		- including both mappings is a bigger challenge with more reward
+
+–– Driving under the unfluence (of Language) (Barrett, Bronikowski, Yu, Siskind) ––
+
+A sentence's meaning for this particular application of natural language control gives information about both the robot's path and the objects in a floorplan, which can be thought of as a mix of commands and assertions. A robot constructs a path through a floorplan by satisfying constraints over time (t0=right of cone, t1=behind stool, t3=between stool and chair) with a very probabilistic model.
+
+–– Teachable robots: Understanding human teaching behavior to build more effective robot learners (Thomaz, Breazeal) ––
+
+Application of reinforcement learning to supervised by allowing the human teacher to control the reward signal (interactive reinforcement learning). 
+
+Assertions about how humans teach (derived from a survey of 18 people):
+	- people want to direct the robot's attention to guide exploration
+	- people have a positive reward bias ()
+	- people adapt their teaching strategy as they develop a mental model for how the robot learns
+	
+Ways to leverage these facts about human teaching:
+	- add a way for the teacher to guide the learner's "attention"
+	- allow the teacher to view what the learner is sensing
+
+The research is conducted using a virtual kitchen environment where the robot learns to bake a cake.
+
+Further research recommendations:
+	- communication from the teacher cannot be merged into one single reward signal. Rather, reward (past action) and guidance (future action) should somehow be separated.
+	- it is better for the teacher to be able to see the learner's internal state in some way
+	- to deal with bias toward positive rewards, try allowing for rewards ON the robot, for general performance rather than a specific task
+	- provide for an undo request, so the teacher can have the robot undo an incorrect action if possible.
+	
+–– Deep reinforcement learning using symbolic representation for performing spoken language instructions (Zamani, Magg, Weber, Wermter) ––
+
+Here the input to the robot's learning module is three-fold: the goal derived from the user's instruction, the reward from the symbolic simulator, and the robot state from the environment state. The corpus for instruction comprehension is the Tell Me Dave corpus (annotated natural language instructions for domestic tasks).
+
+For intention detection in a command, each instruction is a binary vector, where each component is whether a word is present within it. This representation of an instruction can be problematic as it does not attempt to use the instruction's word order for grammar or look for key words. A neural network was then fed these commands paired with intention labels (10 possible intentions) to learn to detect the goal from a command. The authors note that in addition to detection of an ultimate goal, intention detection could be extended to gather feedback and guidance along the same communication channel.
+
+–– personal notes ––
+
+The Thomaz paper reveals that the teaching communication can be controlled, as well as the learner behavior, reflecting the fact that teaching is a two-way process between humans. I could use this notion to provide the teacher with an interface including the robot's representation of state and surroundings. It also introduces the notion of gaze, to represent where in the surroundings the robot is focusing its attention.
+
+The Zamani paper notes that different types of communication from the teacher (assertion, command, feedback, guidance) could be parsed from the same communication channel.
+
+The Argall paper points out different decisions that need to be made when implementing a demonstration learning architecture for a robot: state and action continuity (discreet vs continuous), methods of demonstration and who demonstrates, and how to deal with correspondence (record and embodiment mapping).
 
 ===
 
@@ -23,7 +117,7 @@ TOPIC IDEAS
 find security features/flaws in some technology
 	- collection of specific websites, creating a comprehensive report of common security flaws existent in those sites
 	
-engine for creating custom programming language
+engine for creating custom programming language... or as a user's personal assistent
 	- implementation ideas
 		- would be compiled to some other language
 		- start with a text-based interface between the user and the engine
@@ -39,7 +133,7 @@ engine for creating custom programming language
 	- application
 		- some IOT devices, like voice-controlled personal assistant devices, which already have some capabilities for adapting to users' natural language and parsing for a standard command, could benefit from applying that parsing to generating new commands and data for the user.
 			- example:
-			  "my apple is a fruit"		-->		"user.apple = new Apple();" ">>you can describe your apple if you'd like"	||	it needs to know "my" indicates possession, and "<instance> is a <class>" indicates that <instance> is of type <class>
+			  "my apple is a fruit"		-->		"user.apple = new Apple(); Apple extends Fruit" ">>you can describe your apple if you'd like"	||	it needs to know "my" indicates possession, and "<instance> is a <class>" indicates that <instance> is of type <class>
 			  "my apple is red"			-->		">>what is red?"
 			  "red is a color"			-->		"red = new Color();" ">>what are red's r,g,b values?"
 			  "255,0,0"					-->		"red.r = 255;"
